@@ -32,6 +32,10 @@ private slots:
     void darkColorUpdate(QColor c);
     void errorCorrectionChange(void);
 
+
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
 private:
     void setPushButtonColor(QPushButton *pb, QColor c);
     void printQr(const qrcodegen::QrCode &qr);

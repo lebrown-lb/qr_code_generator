@@ -76,6 +76,40 @@ void ImageLabel::mouseMoveEvent(QMouseEvent *event)
 
 }
 
+void ImageLabel::resizeEvent(QResizeEvent *event)
+{
+    QSize a = size();
+    QSize p = m_image.size();
+    if(!m_image.isNull())
+    {
+        if((a.width() > p.width()) || (a.height() > p.height()))
+        {
+            QColor c(255,255,255);
+            QImage tmp(a.width(), a.height(), QImage::Format_ARGB32);
+            QPainter painter(&tmp);
+
+            painter.setBrush(QBrush(c));
+            painter.fillRect(QRectF(0,0,a.width(),a.height()),c);
+
+            int x = (a.width() - p.width())/2;
+            int y = (a.height() - p.height())/2;
+
+            painter.drawImage(x,y,m_image);
+
+            m_image = tmp;
+
+            QPixmap myPixmap = QPixmap::fromImage(m_image);
+            setPixmap(myPixmap);
+
+        }
+
+    }
+
+
+    event->accept();
+
+}
+
 void ImageLabel::loadImage()
 {
      QString filename = QFileDialog::getOpenFileName(this, tr("OPEN FILE"), nullptr, nullptr);
@@ -90,6 +124,8 @@ void ImageLabel::loadImage()
 void ImageLabel::logoBounds()
 {
     m_selectFlg = true;
+
+    m_contextMenu->hide();
 
 }
 

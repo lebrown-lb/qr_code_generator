@@ -152,6 +152,17 @@ void MainWindow::errorCorrectionChange()
 
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    //QSize scrollSize = ui->scrollArea_2->size();
+    //QSize imageSize = ui->image->size();
+
+    //std::cout << "scroll:[" << scrollSize.width() << "," << scrollSize.height() << "] image:[" << imageSize.width() << "," << imageSize.height() << "]" << std::endl;
+
+    QMainWindow::resizeEvent(event);
+
+}
+
 void MainWindow::setPushButtonColor(QPushButton *pb, QColor c)
 {
     QPalette pal = pb->palette();
