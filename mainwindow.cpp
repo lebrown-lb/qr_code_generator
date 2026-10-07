@@ -223,19 +223,34 @@ void MainWindow::displyQr(const qrcodegen::QrCode &qr, bool logo)
     {
 
         //calculate logo location
-        int w = 8 * m_modulePixelCount;
-        int ld = (m_border * m_modulePixelCount + ((qr.getSize() * m_modulePixelCount)/2)) - w/2;
+        int w = ui->logo_size_sbox->value() * m_modulePixelCount;
+        int ld = (m_border * m_modulePixelCount + ((qr.getSize() * m_modulePixelCount)/2));
+        QImage tmp;
+        int x,y;
 
         if(ui->image_cbox->isChecked() && !ui->image->m_selectedImage.isNull())
         {
-            QImage tmp = ui->image->m_selectedImage.scaled(w,w,Qt::KeepAspectRatio);
-            painter.drawImage(ld, ld, tmp);
+            tmp = ui->image->m_selectedImage.scaled(w,w,Qt::KeepAspectRatio);
         }
         else if(!ui->image->m_image.isNull())
         {
-            QImage tmp = ui->image->m_image.scaled(w,w,Qt::KeepAspectRatio);
-            painter.drawImage(ld, ld, tmp);
+            tmp = ui->image->m_image.scaled(w,w,Qt::KeepAspectRatio);
         }
+
+        if(ui->logo_loc_cb->isChecked())
+        {
+            x = ui ->logo_loc_x_sbox->value();
+            y = ui->logo_loc_y_sbox->value();
+        }
+        else
+        {
+            x = ld - tmp.width()/2;
+            y = ld - tmp.height()/2;
+        }
+
+
+        if(!tmp.isNull())
+            painter.drawImage(x, y, tmp);
 
 
 

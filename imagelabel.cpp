@@ -95,9 +95,19 @@ void ImageLabel::resizeEvent(QResizeEvent *event)
             int y = (a.height() - p.height())/2;
 
             painter.drawImage(x,y,m_image);
-
             m_image = tmp;
 
+            if(!m_selectedImage.isNull())
+            {
+                QPen pen(Qt::red, 2, Qt::SolidLine); // Black pen, 2 pixels wide, solid line
+                QBrush brush(Qt::NoBrush);
+                painter.setPen(pen);
+                painter.setBrush(brush);
+                int width = m_p1.x() - m_p0.x();
+                int height = m_p1.y() - m_p0.y();
+
+                painter.drawRect(m_p0.x(), m_p0.y(), width, height);
+            }
             QPixmap myPixmap = QPixmap::fromImage(m_image);
             setPixmap(myPixmap);
 
