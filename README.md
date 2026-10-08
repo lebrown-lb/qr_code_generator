@@ -6,8 +6,10 @@ Uses [nayuki's QR code library](https://github.com/nayuki/QR-Code-generator) to 
 
 ## Application Interface:
 
-![gui1](QRCODES/qr_code_app_1.png)
-![gui2](QRCODES/qr_code_app_2.png)
+![gui1](QRCODES/qr_code_app_1.png)\
+*Note that in the above image the logo palette is hidden you must move your mouse to the left until the arrows appear then click and drag mouse to the right*  
+![gui2](QRCODES/qr_code_app_2.png)\
+*Note once the logo pallette is visible you can right click it and select load image. After an image is loaded you can place logo bounds (shown in red) using the right click menu.*
 
 
 ## QR CODE Examples:
